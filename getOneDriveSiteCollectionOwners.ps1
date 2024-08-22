@@ -1,6 +1,8 @@
 <#
 .SYNOPSIS
-    This script will capture the site collection admins on personal onedrive accounts for a domain
+    This script will capture the site collection admins on personal onedrive accounts for a domain. 
+    The script will temporary add the admin account being used to the site collection admin to gather the report. 
+    The admin account will have to be at least a SharePoint Administrator in Entra ID.
 .NOTES
     File Name      : getOneDriveSiteCollectionOwners.ps1
     Author         : Brandon Hough
