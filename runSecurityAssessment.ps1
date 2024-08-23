@@ -1,10 +1,27 @@
-﻿
+<#
+.SYNOPSIS
+    Welcome to the Azure Security Settings Audit tool! This project is currently in its alpha stage, aimed at providing a foundational solution for auditing security 
+    settings within Microsoft Azure environments. As we continue development, we aim to expand features, enhance reliability, and ensure compatibility with various Azure configuration.
+.NOTES
+    File Name      : runSecurityAssessment.ps1
+    Author         : Brandon Hough
+    Prerequisite   : MSOnline, ExchangeOnlineManagement, MicrosoftTeams, AIPService, and ORCA
+
+.PARAMETER export_path
+The path you want the file to export to
+	
+.EXAMPLE
+	.\runSecurityAssessment.ps1 -export_path c:\temp\report.csv
+#>﻿
 
 # Define a function to create the data object
 function Add-DataToSpreadSheet {
     param(
         [int]$setting_id,
-        [object]$current_value
+        [object]$current_value,
+        
+        [Parameter(Mandatory=$true)]
+        [string]$domainname,
     )
     return [PSCustomObject]@{
         "SettingID" = $setting_id
@@ -12,7 +29,6 @@ function Add-DataToSpreadSheet {
     }
 }
 
-$export_path = 'C:\path\to\export.csv'
 $Report = @()
 
 ### Microsoft Online Services - Start ###
